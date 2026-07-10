@@ -2,7 +2,7 @@
 
 # RM65 Vision Grasping
 
-### 让机械臂“看见、算清、再动手” 🤖
+### 🤖让机械臂“看见、算清、再动手” 🤖
 
 基于 **RealMan RM65-6F + LiteS001 灵巧手 + RealSense D435i** 的 ROS 2 视觉抓取系统
 
@@ -17,13 +17,13 @@
 
 > [▶ 点击观看完整 30 秒演示视频](media/grasping_demo.mp4)
 
-## 这个项目做了什么？
+## 一、这个项目做了什么？
 
 我搭建了一条从 RGB-D 感知到机械臂执行的完整链路：YOLO 给出物体三维位置，TF2 将目标从相机坐标系转换到机械臂基坐标系，MoveIt 2 求解逆运动学，最后通过关节轨迹控制器执行“靠近—下降—抓取—抬升”。
 
 它不只是把几个 ROS 节点拼起来。项目中真正费脑筋的，是让 **URDF、TF、MoveIt、控制器和真实硬件使用同一套坐标与关节语义**。这也是本仓库最想展示的部分。
 
-## 系统链路
+## 二、系统链路
 
 ```mermaid
 flowchart TD
@@ -42,7 +42,7 @@ flowchart TD
 | 执行 | 关节角 → 真实运动 | 对接 `FollowJointTrajectory`，增加状态门禁和超时 |
 | 工程可靠性 | 异步消息 → 稳定抓取流程 | 多线程执行、重复目标过滤、QoS 对齐、错误码诊断 |
 
-## 我对机器人学知识的实际应用
+## 三、我对机器人学知识的实际应用
 
 ### 1. 运动学：抓取目标必须落在正确坐标系里
 
@@ -52,7 +52,7 @@ $$
 {}^{B}\mathbf{p}_{O} = {}^{B}\mathbf{T}_{E}\;{}^{E}\mathbf{T}_{C}\;{}^{C}\mathbf{p}_{O}
 $$
 
-其中 $B$、$E$、$C$、$O$ 分别代表基座、末端、相机和目标。代码实现位于 [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)。
+其中 B、E、C、O 分别代表基座、末端、相机和目标。代码实现位于 [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)。
 
 ### 2. 逆运动学：从“物体在哪里”到“六个关节转多少”
 
@@ -62,7 +62,7 @@ $$
 
 URDF 中的质量、质心和惯量决定机器人动力学模型；关节速度限制、轨迹时长和控制器容差决定真实执行是否平稳。本项目没有自称实现自研逆动力学控制器，而是把重点放在 **模型一致性、速度约束和轨迹执行可靠性** 上。更完整的推导与设计取舍见 [机器人学笔记](docs/robotics_notes.md)。
 
-## 最有价值的排错经历
+## 四、排错经验
 
 | 现象 | 根因 | 最终解决方法 |
 |---|---|---|
@@ -74,7 +74,7 @@ URDF 中的质量、质心和惯量决定机器人动力学模型；关节速度
 
 完整复盘见 [问题解决记录](docs/problem_solving.md)。
 
-## 代码导航
+## 五、代码导航
 
 ```text
 rm65_vision_grasping/
@@ -88,7 +88,7 @@ rm65_vision_grasping/
 └── media/                         # 演示视频与预览
 ```
 
-建议先看：
+技术文档入口：
 
 1. [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)：坐标变换链路；
 2. [`grasp_control_node.py`](src/custom_grasp_pke/custom_grasp_pke/grasp_control_node.py)：IK、轨迹执行和并发设计；
@@ -100,7 +100,7 @@ rm65_vision_grasping/
 - [`technical_details.md`](docs/technical_details.md)：从论文与代码交叉整理的技术实现说明；
 - [`robotics_notes.md`](docs/robotics_notes.md)：运动学、雅可比和动力学设计取舍。
 
-## 环境与运行
+## 六、环境与运行
 
 验证环境：Ubuntu 22.04、ROS 2 Humble、MoveIt 2、Python 3.10。
 
@@ -125,16 +125,16 @@ bash scripts/doctor.sh
 
 > 安全提示：首次连接真实机械臂时，请降低速度、清空工作空间并保持急停可用。仓库中的标定外参只对应本项目装配，不能直接用于另一套硬件。
 
-## 当前边界与下一步
+## 七、当前边界与下一步
 
 - ✅ 已完成：3D 检测接入、手眼变换、RM65 IK、关节轨迹执行、完整启动编排；
 - 🟡 工程边界：公开代码中的灵巧手开合保留为接口占位，演示重点是视觉到机械臂运动链路；
-- 🔜 下一步：接入真实手部驱动、加入抓取姿态估计、轨迹时间参数化与力/触觉闭环。
+- 🔜 下一步：加入抓取姿态估计、轨迹时间参数化与力/触觉闭环。
 
 ---
 
 <div align="center">
 
-如果你正在看这个仓库：欢迎从 Issue 开始聊机器人、视觉抓取或 ROS 2。🙂
+如果你正在看这个仓库：欢迎从 Issue 开始与我一起探讨机器人、视觉抓取或 ROS 2。🙂
 
 </div>
