@@ -1,0 +1,8 @@
+/**:
+  ros__parameters:
+    # Eye-in-hand result: Link6 -> camera_link
+    # Translation unit: metre; rotation: quaternion (x, y, z, w).
+    translation: [-0.09649021, 0.03243441, 0.03628098]
+    rotation: [0.49395403, 0.49657568, -0.48568989, 0.52299841]
+    parent_frame: Link6
+    child_frame: camera_link

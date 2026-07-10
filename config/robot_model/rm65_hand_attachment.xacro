@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!--
+    Integration fragment added on top of the vendor RM65 and LiteS001 models.
+    The fixed joint closes the arm-hand kinematic tree; tcp_link represents the
+    task-space grasp point used by MoveIt IK.
+  -->
+  <joint name="rm65_to_lites001_joint" type="fixed">
+    <parent link="Link6"/>
+    <child link="hand_base_link"/>
+    <origin xyz="0 0 0.006" rpy="0 1.5708 3.1416"/>
+  </joint>
+
+  <link name="tcp_link"/>
+  <joint name="hand_to_tcp_joint" type="fixed">
+    <parent link="hand_base_link"/>
+    <child link="tcp_link"/>
+    <origin xyz="-0.18 0 0" rpy="0 0 0"/>
+  </joint>
+</robot>
