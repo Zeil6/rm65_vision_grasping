@@ -2,7 +2,7 @@
 
 # RM65 Vision Grasping
 
-### 让机械臂“看见、算清、再动手” 🤖
+### 🤖让机械臂“看见、算清、再动手” 🤖
 
 基于 **RealMan RM65-6F + LiteS001 灵巧手 + RealSense D435i** 的 ROS 2 视觉抓取系统
 
