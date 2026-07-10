@@ -88,7 +88,7 @@ rm65_vision_grasping/
 └── media/                         # 演示视频与预览
 ```
 
-建议面试时先看：
+建议先看：
 
 1. [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)：坐标变换链路；
 2. [`grasp_control_node.py`](src/custom_grasp_pke/custom_grasp_pke/grasp_control_node.py)：IK、轨迹执行和并发设计；
