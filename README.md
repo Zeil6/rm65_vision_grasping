@@ -52,7 +52,7 @@ $$
 {}^{B}\mathbf{p}_{O} = {}^{B}\mathbf{T}_{E}\;{}^{E}\mathbf{T}_{C}\;{}^{C}\mathbf{p}_{O}
 $$
 
-其中 $B$、E、C、O 分别代表基座、末端、相机和目标。代码实现位于 [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)。
+其中 B、E、C、O 分别代表基座、末端、相机和目标。代码实现位于 [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)。
 
 ### 2. 逆运动学：从“物体在哪里”到“六个关节转多少”
 
@@ -62,7 +62,7 @@ $$
 
 URDF 中的质量、质心和惯量决定机器人动力学模型；关节速度限制、轨迹时长和控制器容差决定真实执行是否平稳。本项目没有自称实现自研逆动力学控制器，而是把重点放在 **模型一致性、速度约束和轨迹执行可靠性** 上。更完整的推导与设计取舍见 [机器人学笔记](docs/robotics_notes.md)。
 
-## 最有价值的排错经历
+## 排错经验
 
 | 现象 | 根因 | 最终解决方法 |
 |---|---|---|
