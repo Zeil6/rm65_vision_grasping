@@ -13,7 +13,7 @@
 
 </div>
 
-               ![RM65 demo preview](media/grasping_preview.gif)
+![RM65 demo preview](media/grasping_preview.gif)
 
 > [▶ 点击观看完整 30 秒演示视频](media/grasping_demo.mp4)
 
