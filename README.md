@@ -2,7 +2,7 @@
 
 # RM65 Vision Grasping
 
-### 🤖让机械臂“看见、算清、再动手” 🤖
+### 让机械臂“看见、算清、再动手” 🤖
 
 基于 **RealMan RM65-6F + LiteS001 灵巧手 + RealSense D435i** 的 ROS 2 视觉抓取系统
 
@@ -52,7 +52,7 @@ $$
 {}^{B}\mathbf{p}_{O} = {}^{B}\mathbf{T}_{E}\;{}^{E}\mathbf{T}_{C}\;{}^{C}\mathbf{p}_{O}
 $$
 
-其中 B、E、C、O 分别代表基座、末端、相机和目标。代码实现位于 [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)。
+其中 $B$、$E$、$C$、$O$ 分别代表基座、末端、相机和目标。代码实现位于 [`vision_tf_node.py`](src/custom_grasp_pke/custom_grasp_pke/vision_tf_node.py)。
 
 ### 2. 逆运动学：从“物体在哪里”到“六个关节转多少”
 
@@ -62,7 +62,7 @@ $$
 
 URDF 中的质量、质心和惯量决定机器人动力学模型；关节速度限制、轨迹时长和控制器容差决定真实执行是否平稳。本项目没有自称实现自研逆动力学控制器，而是把重点放在 **模型一致性、速度约束和轨迹执行可靠性** 上。更完整的推导与设计取舍见 [机器人学笔记](docs/robotics_notes.md)。
 
-## 排错经验
+## 最有价值的排错经历
 
 | 现象 | 根因 | 最终解决方法 |
 |---|---|---|
@@ -94,6 +94,11 @@ rm65_vision_grasping/
 2. [`grasp_control_node.py`](src/custom_grasp_pke/custom_grasp_pke/grasp_control_node.py)：IK、轨迹执行和并发设计；
 3. [`real_moveit_demo_6f.launch.py`](config/moveit/real_moveit_demo_6f.launch.py)：合并模型如何正确进入 MoveIt；
 4. [`problem_solving.md`](docs/problem_solving.md)：我如何定位问题，而不只是反复试命令。
+
+想完整了解硬件参数、YOLO 数据链路、深度坐标计算、`AX=XB` 手眼标定、MoveIt 执行参数和实验边界，可继续阅读：
+
+- [`technical_details.md`](docs/technical_details.md)：从论文与代码交叉整理的技术实现说明；
+- [`robotics_notes.md`](docs/robotics_notes.md)：运动学、雅可比和动力学设计取舍。
 
 ## 环境与运行
 
